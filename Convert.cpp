@@ -6,7 +6,7 @@ using namespace std;
 int main(int argc, char *argv[]){
     std::ifstream image;
     std::string filetype = ".565";
-    std:string filename;
+    std::string filename;
     std::string a1 = argv[1];
     std::string a2 = argv[2];
     std::string a3 = argv[3];
@@ -75,17 +75,15 @@ int main(int argc, char *argv[]){
    uint32_t j = 0;
    for(uint32_t i = 0; i < size*3; i += 3){
     r = rgbarray[i];
-    //printf("r: %u\n", r);
+    printf("r: %u\n", r);
     g = rgbarray[i+1];
-    //printf("g: %u\n", g);
+    printf("g: %u\n", g);
     b = rgbarray[i+2];
-    //printf("b: %u\n", b);
+    printf("b: %u\n", b);
     rgb = ((r & 0xF8) << 8) | ((g & 0xFC) << 3) | (b >> 3);
-    //printf("rgb: %u\n", rgb);
-    uint8_t rgb565low = rgb << 8;
-    rgb565low = rgb >> 8;
+    printf("rgb: %u\n", rgb);
     rgb5658bit[j] = rgb >> 8;
-    rgb5658bit[j+1] = rgb565low;
+    rgb5658bit[j+1] = rgb & 0xFF;
     j+=2;
     printf("%u\n", j);
    }
