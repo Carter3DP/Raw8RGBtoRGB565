@@ -60,28 +60,21 @@ int main(int argc, char *argv[]){
     uint8_t b;
     char rgbarray[256*256*3];
     printf("Reading image\n");
-    //image.read(rgbarray, size*3);
     uint32_t size = width * height;
-    printf("here %u %u %u\n", width, height, size);
     if(size*3 <= 256*256*3){
         image.read(rgbarray, size*3);
     }
    image.close();
    printf("Making new image file\n");
    std::ofstream rgb565(filename.c_str(), std::ios::out | std::ios::binary);
-   printf("%s\n", rgb565.is_open() ? "true" : "false");
    uint16_t rgb;
    char rgb5658bit[256*256*2];
    uint32_t j = 0;
    for(uint32_t i = 0; i < size*3; i += 3){
     r = rgbarray[i];
-    printf("r: %u\n", r);
     g = rgbarray[i+1];
-    printf("g: %u\n", g);
     b = rgbarray[i+2];
-    printf("b: %u\n", b);
     rgb = ((r & 0xF8) << 8) | ((g & 0xFC) << 3) | (b >> 3);
-    printf("rgb: %u\n", rgb);
     rgb5658bit[j] = rgb >> 8;
     rgb5658bit[j+1] = rgb & 0xFF;
     j+=2;
@@ -89,9 +82,7 @@ int main(int argc, char *argv[]){
    }
    rgb565.put(width);
    rgb565.put(height);
-   printf("here %u %u %u\n", width, height, size);
    rgb565.write(rgb5658bit, size*2);
-   printf("here %u %u %u\n", width, height, size);
    rgb565.close();
    return 0;
 }
