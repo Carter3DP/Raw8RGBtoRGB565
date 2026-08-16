@@ -6,4 +6,5 @@ Intended for use with the Adafruit GFX library, specifically Adafruit_GFX::drawR
 ## Usage
 First argument must be file follow by the filename, and interchangably, w followed by image width, and h followed by image height.  
 ``` ./Convert.exe file image.data w 256 h 256 ``` or ``` ./Convert.exe file image.data h 256 w 256 ```  
-Image must be below 256x256 and width and height specified must also be below 256.
+Image must be below 256x256 and width and height specified must also be below 256, unless it is a text file, in which case input "text" as the final argument, and the size requirement is bypassed
+If exporting with GIMP, Alpha Channel must be removed.
